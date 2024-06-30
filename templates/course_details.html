@@ -1,0 +1,84 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .row {
+        width: auto;
+        height: auto;
+        color: white;
+        padding: 29px;
+    }
+
+    .img {
+        width: 3%;
+        height: auto;
+        background-color: white;
+        border-radius: 50%;
+    }
+
+
+    .video {
+        background-color: #142023;
+        height: 300px;
+        text-align: center;
+        border: 1px solid white;
+        border-top-right-radius: 19px;
+    }
+
+    .description {
+        background-color: white;
+        color: black;
+        text-align: center;
+    }
+
+    input {
+        width: 100%;
+        border: none;
+        border-radius: 19px;
+        background-color: #142023;
+        color: white;
+    }
+
+    .details {
+        border-bottom: 1px solid white;
+        background-color: #142023;
+        border-top-left-radius: 19px;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-7 col-md-7 col-sm-12">
+        {% for course in course %}
+        <div class="row details">
+            <h1><b>{{ course.course_name }}</b></h1>
+            <p>{{ course.short_description }}</p>
+            <p><img class="img" src="{% static 'img/profile.png' %}" alt=""> {{ course.instructor }}</p>
+        </div>
+        <div class="row">
+            <h1><b>What you'll learn: </b></h1>
+            <p>{{ course.syllabus }}</p>
+            <br>
+            <br>
+            <h1><b>Description</b></h1>
+            <p>{{ course.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-lg-5 col-md-5 col-sm-12">
+        {% for course in course %}
+        <div class="row video">
+            <h1><b>Upcoming</b></h1>
+        </div>
+        <div class="row description">
+            <p>15 Days Money Back Guarantee</p>
+            <h5><b>This Course Includes:</b></h5>
+            <p>2 Months Of Trainning</p>
+            <p>Access On Mobile & PC Both</p>
+            <p>Full Lifetime Access</p>
+            <br>
+            <br>
+            <input type="submit" value="Enroll Now">
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

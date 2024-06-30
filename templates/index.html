@@ -1,0 +1,85 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load static %}
+
+
+
+<style>
+    .hompage {
+        width: 100%;
+        height: auto;
+    }
+
+    iframe {
+        width: 100%;
+        height: auto;
+    }
+
+    .txt {
+        background-color: #142023;
+        width: 99%;
+        margin: auto;
+        border: 1px solid rgb(183, 183, 183);
+        border-radius: 19px;
+        padding: 19px;
+        color: white;
+    }
+
+    @media screen and (max-width: 479px) {
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+        
+    }
+</style>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <a href="{% url 'print_shop' %}">
+                <img class="hompage" src="{% static 'img/printshop.png' %}" alt="">
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <a href="{% url 'tools' %}">
+                <img class="hompage" src="{% static 'img/ag.png' %}" alt="">
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <a href="{% url 'check_assignment_plagirism' %}">
+                <img class="hompage" src="{% static 'img/grammer.png' %}" alt="">
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <a href="{% url 'qa' %}">
+                <img class="hompage" src="{% static 'img/qb.png' %}" alt="">
+            </a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row txt">
+
+
+        <div class="col-lg-7 col-md-7 col-sm-12">
+
+            <h1><b>What is CatchyCampus?</b></h1>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id dicta dolorem ipsa fugit similique
+                necessitatibus fugiat pariatur, veniam a explicabo unde cupiditate impedit iusto reprehenderit animi
+                reiciendis vel blanditiis accusamus!</p>
+
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-12">
+
+            <img src="{% static 'img/p.png' %}" alt="">
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,83 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+<style>
+  .img {
+    width: 100%;
+    height: auto;
+  }
+
+  .pdf {
+    margin: auto;
+    margin-top: 29px;
+  }
+
+  .shop {
+    width: 100%;
+    height: auto;
+    background-color: #142023;
+    border-radius: 19px;
+    border: 1px solid white;
+  }
+
+  .shop-row {
+    padding: 19px;
+    color: white;
+  }
+
+  .shop-row-bottom {
+    padding: 19px;
+    background-color: white;
+    border-bottom-right-radius: 19px;
+    border-bottom-left-radius: 19px;
+    margin: 0px;
+  }
+</style>
+
+<div class="container">
+  <br />
+  <a href="{% url 'home' %}" style="text-decoration: none"
+    ><h5 style="text-align: left; color: white">
+      <b>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-corner-down-left"
+        >
+          <polyline points="9 10 4 15 9 20"></polyline>
+          <path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
+        </svg>
+        Choose Your Nearest Shop</b
+      >
+    </h5></a
+  >
+  <div class="row">
+    {% for shoplist in shop %}
+    <div class="col-lg-3 col-md-6 col-sm-12 pdf">
+      <a style="text-decoration: none" href="{% url 'SubmitPDF' shoplist.pk %}">
+        <div class="shop">
+          <div class="row shop-row">
+            <div class="col-6">
+              <h5>{{ shoplist.shopname }}</h5>
+            </div>
+            <div class="col-6">
+              <img class="img" src="{{ shoplist.shopphoto.url }}" alt="Image" />
+            </div>
+          </div>
+          <div class="row shop-row-bottom">
+            <h5 style="color: black"><b>{{ shoplist.shoplocation }}</b></h5>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}

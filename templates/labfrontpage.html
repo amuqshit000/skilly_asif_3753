@@ -1,0 +1,88 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .input {
+        width: 100%;
+        height: 29px;
+        background-color: transparent;
+        border: none;
+        border: 1px solid white;
+        border-radius: 19px;
+        color: white;
+        padding: 19px;
+    }
+
+    .input::placeholder {
+        color: white;
+    }
+
+    .button {
+        padding: 0px;
+    }
+
+    .design {
+        background-color: #142023;
+        padding: 19px;
+        border-radius: 19px;
+    }
+
+
+
+</style>
+<div class="page-container">
+    <br>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-lg-4 col-md-12 col-sm-12 design">
+                    <h5 style="color: white;"><b>Write Lab Details</b></h5>
+                    <hr>
+                    <form method="POST" action="{% url 'generate_lfront_page' %}">
+                        {% csrf_token %}
+                        <input class="input" type="text" name="topic" placeholder="Lab Title" required>
+                        <br>
+                        <br>
+                        <input class="input" type="text" name="course_code" placeholder="Course Code" required>
+                        <br>
+                        <br>
+                        <input class="input" type="text" name="course_title" placeholder="Course Title" required>
+                        <br>
+                        <br>
+                        <input class="input" type="text" name="course_teacher_name" placeholder="Course Teacher Name"
+                            required>
+                        <br>
+                        <br>
+                        <input class="input" type="text" name="course_teacher_designation"
+                            placeholder="Course Teacher Designation Example: Professor" required>
+                        <br>
+                        <br>
+                        <input class="input" type="text" name="course_teacher_department"
+                            placeholder="Course Teacher Department" required>
+                        <br>
+                        <br>
+                        <input class="input" type="text" name="name" placeholder="Your Name" required>
+                        <br>
+                        <br>
+                        <input class="input" type="text" name="iid" placeholder="Your ID" required>
+                        <br>
+                        <br>
+                        <input class="input" type="text" name="department" placeholder="Your Department" required>
+                        <br>
+                        <br>
+                        <input class="input" type="date" name="date" placeholder="Date Of Subission" required>
+                        <br>
+                        <br>
+                        <input class="input button" type="submit" value="Submit">
+                    </form>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

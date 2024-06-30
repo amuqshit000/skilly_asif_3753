@@ -1,0 +1,4 @@
+﻿django
+pypdf2
+spacy
+pillow

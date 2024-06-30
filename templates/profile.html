@@ -1,0 +1,205 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<style>
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .history {
+        padding: 19px;
+    }
+
+
+    .profile {
+        width: 93%;
+        box-sizing: border-box;
+        height: auto;
+        background: #142023;
+        border-radius: 19px;
+        margin: auto;
+        top: 143px;
+        color: white;
+    }
+
+    .profile_bio {
+        width: 93%;
+        box-sizing: border-box;
+        left: 80px;
+        top: 143px;
+        background: #142023;
+        border-radius: 19px;
+        margin: auto;
+        color: white;
+        border: 1px solid white;
+    }
+
+    .profile_pic {
+        width: 129px;
+        height: 129px;
+        border-radius: 50%;
+        margin: auto;
+        margin-top: 29px;
+    }
+
+    .pro {
+        background-color: white;
+
+    }
+
+    .left {
+        text-align: left;
+    }
+
+    .right {
+        text-align: right;
+    }
+
+    .info {
+        padding: 29px;
+    }
+
+    .profile_name {
+        text-align: center;
+        margin-top: 29px;
+    }
+
+    .button {
+        width: 130px;
+        height: 32px;
+        border: 1px solid black;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 22px;
+        background: #FFFBDA;
+        border: 1px solid #000000;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+    }
+
+    .status {
+        height: 100vh;
+        overflow: scroll;
+        margin-top: 29px;
+    }
+
+    .status_details {
+        box-sizing: border-box;
+        width: 93%;
+        height: 226px;
+        background: #142023;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+        border-radius: 19px;
+        margin: auto;
+        color: white;
+        border: 1px solid white;
+    }
+
+    @media screen and (max-width: 479px) {
+        .profile {
+            width: 100%;
+            height: auto;
+        }
+
+        .profile_bio {
+            width: 100%;
+        }
+
+        .status_details {
+            width: 100%;
+        }
+
+        .left {
+            text-align: left;
+            width: 50%;
+        }
+
+        .right {
+            text-align: right;
+            width: 50%;
+        }
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5 col-md-12 col-sm-12">
+            <div class="profile">
+                <div class="profile_pic">
+                    <img class="profile_pic pro" src="{% static 'img/profile.png' %}" alt="">
+                </div>
+                <div>
+                    <div class="profile_name">
+                        <br>
+                        <p>@{{ user.username }}</p>
+                        <h5><b>{{ user.get_full_name }}</b></h5>
+                        <br>
+                        <br>
+                        <p>Email: {{ user.email }}</p>
+                        <!-- <p>Phone: {{ user.phone }}</p> -->
+                        <p>Institution: Daffodil International University</p>
+                        <br>
+                        <br>
+                    </div>
+
+                </div>
+            </div>
+            <br>
+            <hr style="width: 93%; margin: auto;">
+            <br>
+            <div class="profile_bio">
+                <div class="row info">
+                    <div class="col-lg-6 col-md-6 col-sm-6 left">
+                        <p>Total Order :</p>
+                        <p>Q/A :</p>
+                        <p>Course :</p>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 right">
+                        <p>99</p>
+                        <p>99</p>
+                        <p>99</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7 col-md-12 col-sm-12 status">
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                <strong></strong>{{ message }}
+            </div>
+            {% endfor %}
+            {% for list in list reversed %}
+            <div class="status_details">
+                <div class="history">
+                    <span style="float: right; font-size: 15px;">{{ list.time|naturaltime }}</span>
+                    <b>File:</b> {{ list.file }} <a style="color: #8BF0FE;" href="{{ list.file.url }}"> | View</a>
+                    <br>
+                    <b>Shop Name:</b> {{ list.selectshopname }}
+                    <br>
+                    <span><b>Order ID:</b> {{ list.pk }}</span>
+                    <br>
+                    <span><b>Total Cost:</b> {{ list.total_cost }}</span>
+                    <br>
+                    {% if list.payment_status %}
+                    <span><b>Payment: </b><span style="color: #1BB617;">Completed</span></span>
+                    {% else %}
+                    <span><b>Payment: </b><span style="color: red;">Pending</span></span>
+                    {% endif %}
+                    <br>
+                    {% if list.status %}
+                    <span><b>Status: </b><span style="color: #1BB617;">Completed</span></span>
+                    {% else %}
+                    <span><b>Status: </b><span style="color: red;">Processing</span></span>
+                    {% endif %}
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

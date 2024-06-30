@@ -1,0 +1,118 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusConnect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/templatemo-style.css' %}">
+
+    <style>
+        .input {
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            border: 1px solid rgb(199, 199, 199);
+            border-radius: 19px;
+            padding: 19px;
+        }
+
+        .input::placeholder {
+            color: white;
+        }
+
+
+        input[type="submit"] {
+            color: white;
+        }
+
+        input[type="submit"]:hover {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <video autoplay muted loop id="bg-video">
+        <source src="{% static 'video/gfp-astro-timelapse.mp4' %}" type="video/mp4">
+    </video>
+    <div class="page-container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="cd-slider-nav">
+                        <nav class="navbar navbar-expand-lg" id="tm-nav">
+                            <a class="navbar-brand" href="{% url 'home' %}"> <svg xmlns="http://www.w3.org/2000/svg"
+                                    width="29" height="29" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-corner-down-left">
+                                    <polyline points="9 10 4 15 9 20"></polyline>
+                                    <path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
+                                </svg> Back To Home</a>
+
+
+                        </nav>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col">
+                            <h5><b>Plagirism Report</b></h5>
+                            <hr>
+
+                        </div>
+                        <div class="col"></div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="container-fluid">
+            <footer class="row mx-auto tm-footer">
+                <div class="col-md-6 px-0">
+                    Copyright 2023 B4Sync Technology Limited. All rights reserved.
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!-- Preloader, https://ihatetomatoes.net/create-custom-preloading-screen/ -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/slick.js' %}"></script>
+    <script src="{% static 'js/templatemo-script.js' %}"></script>
+</body>
+
+</html>

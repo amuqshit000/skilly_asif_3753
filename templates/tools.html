@@ -1,0 +1,111 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+<style>
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .software {
+    margin-top: 29px;
+  }
+
+  .assignment-page {
+    width: 100%;
+    height: 273px;
+    background: linear-gradient(108.02deg, #eec948 0%, #d49322 110.46%),
+      linear-gradient(108.7deg, #ffffff 0%, rgba(255, 255, 255, 0.2) 75.81%);
+    border-radius: 19px;
+    text-align: center;
+  }
+
+  .assignment-check {
+    width: 100%;
+    height: 273px;
+    background: linear-gradient(
+        108.28deg,
+        #89d5ff 0%,
+        rgba(141, 81, 218, 0.41) 98.05%
+      ),
+      linear-gradient(109.35deg, #ffffff 0%, rgba(255, 255, 255, 0.2) 61.96%);
+    border-radius: 19px;
+    text-align: center;
+  }
+
+  .img {
+    margin-top: 29px;
+    width: 39%;
+    height: auto;
+  }
+
+  a {
+    text-decoration: none;
+  }
+</style>
+<div class="container">
+  <br />
+  <a href="{% url 'home' %}"
+    ><h5 style="text-align: left; color: white">
+      <b>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-corner-down-left"
+        >
+          <polyline points="9 10 4 15 9 20"></polyline>
+          <path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
+        </svg>
+        Automated Tools</b
+      >
+    </h5></a
+  >
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-12 software">
+      <a href="{% url 'assignment_front_page' %}">
+        <div class="assignment-page">
+          <img class="img" src="{% static 'img/a.png' %}" alt="" />
+          <br />
+          <br />
+          <h5 style="color: white"><b>Assignment Font Page Generator</b></h5>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 software">
+      <a href="{% url 'lab_front_page' %}">
+        <div class="assignment-page">
+          <img class="img" src="{% static 'img/a.png' %}" alt="" />
+          <br />
+          <br />
+          <h5 style="color: white"><b>Lab Font Page Generator</b></h5>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 software">
+      <a href="">
+        <div class="assignment-check">
+          <img class="img" src="{% static 'img/a.png' %}" alt="" />
+          <br />
+          <br />
+          <h5 style="color: white"><b>Assignment Plagiriasm Checker</b></h5>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 software">
+      <a href="{% url 'check_assignment_plagirism' %}">
+        <div class="assignment-check">
+          <img class="img" src="{% static 'img/a.png' %}" alt="" />
+          <br />
+          <br />
+          <h5 style="color: white"><b>Assignment Grammer Checker</b></h5>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

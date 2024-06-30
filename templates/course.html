@@ -1,0 +1,104 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .course {
+        width: 93%;
+        height: auto;
+        margin: auto;
+        background: #142023;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        padding: 29px;
+        text-align: center;
+        color: white;
+        border: 1px solid white;
+        text-align: left;
+        margin: 10px;
+    }
+
+    img {
+        width: 73%;
+        height: auto;
+    }
+
+    .row {
+        color: white;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    @media screen and (max-width: 479px) {
+        img {
+            width: 100%;
+        }
+
+    }
+</style>
+<div class="container">
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <a href="{% url 'academic_courses' %}">
+                <div class="course">
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="{% static 'img/academic.png' %}" alt="">
+
+                        </div>
+                        <div class="col-8">
+                            <h1><b>Academic <br> Courses</b></h1>
+
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis consequuntur iste ut
+                            accusantium quibusdam, reiciendis veniam deleniti, possimus dignissimos facere magnam esse
+                            sed
+                            aliquam rerum quam quia harum consectetur. Nemo?</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <a href="{% url 'professional_courses' %}">
+            <div class="course">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="{% static 'img/professional.png' %}" alt="">
+
+                    </div>
+                    <div class="col-8">
+                        <h1><b>Professional <br> Courses</b></h1>
+
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis consequuntur iste ut
+                        accusantium quibusdam, reiciendis veniam deleniti, possimus dignissimos facere magnam esse sed
+                        aliquam rerum quam quia harum consectetur. Nemo?</p>
+                </div>
+            </div>
+        </a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, sapiente perspiciatis ratione maxime
+            necessitatibus, possimus omnis, amet iure corporis quaerat quidem explicabo dolores soluta ducimus rem ullam
+            a inventore adipisci! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates sequi in
+            assumenda aperiam veniam! Dolorem, unde quos aspernatur nam explicabo voluptates quibusdam praesentium sequi
+            repellat, temporibus officiis possimus doloribus asperiores? Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Distinctio quod error optio consectetur, corrupti dignissimos perspiciatis nostrum animi
+            vero ullam amet, cum nemo itaque dolorem quam exercitationem labore sunt omnis.</p>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>bKash Payment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(255, 0, 170);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: rgb(238, 8, 162);
+        }
+
+        .bkash {
+            background-color: rgb(255, 0, 170);
+            width: 100%;
+            height: auto;
+        }
+
+        .qr {
+            width: 29%;
+            height: 100px;
+            margin: auto;
+        }
+
+        .col {
+            background-color: white;
+            margin: 10px;
+            width: 100%;
+            font-size: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bkash-design {
+            background-color: rgb(255, 0, 170);
+        }
+
+        .power {
+            font-size: 7px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container bkash-design">
+        {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong></strong>{{ message }}
+        </div>
+        {% endfor %}
+        <div class="bkash">
+            <h5 style="text-align: center; color: white;"><b><small class="power">Catchy Campus</small></b></h5>
+            <h5 style="text-align: center; color: white;"><b>Pay {{ total_cost }} BDT</b></h5>
+            <hr>
+            <p style="text-align: center; color: white;"><b>Scan QR Code For Payment (No Need Bkash App. Scan with QR
+                    Scanner)</b></p>
+            <div class="qr">
+                <img src="{% static 'img/qr.png' %}" alt="">
+            </div>
+            <br>
+            <br>
+            <h5 style="text-align: center; color: white;"><b>OR</b></h5>
+            <p style="text-align: center; color: white;"><b>Follow The Instractions</b></p>
+            <div class="row">
+                <div class="col">
+                    Dial *247#
+                </div>
+                <div class="col">
+                    Select Payment
+                </div>
+                <div class="col">
+                    Give This Number <br> +8801885706992
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Write The Amount = {{ total_cost }}
+                </div>
+                <div class="col">
+                    Give Bkash Pin
+                </div>
+                <div class="col">
+                    Remember Your Transactions
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p style="text-align: center; color: white;"><b>After Successfully Payment Fill The Given Form</b></p>
+    </div>
+    <div class="container">
+        <h5><b>Enter Your Transaction</b></h5>
+        <form action="{% url 'bkash' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="total_cost" id="total_cost" placeholder="Total Cost" value="{{ total_cost }}"
+                readonly>
+
+            <input type="hidden" name="total_page" id="total_page" placeholder="Enter the amount"
+                value="{{ total_page }}" readonly>
+
+            <input type="hidden" name="sender_name" id="sender_name" placeholder="Enter the amount"
+                value="{{ sender_name }}" readonly>
+
+            <input type="hidden" name="sender_email" id="total_page" placeholder="Enter the amount"
+                value="{{ sender_email }}" readonly>
+
+            <label for="amount">Transaction:</label>
+            <input type="text" name="transaction" id="transaction" placeholder="Enter The Transaction">
+            <br>
+            <br>
+            <button type="submit">Submit Transaction ID</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

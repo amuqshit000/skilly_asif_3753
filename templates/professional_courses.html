@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .department {
+        width: 93%;
+        height: 300px;
+        margin: auto;
+        background: #142023;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        padding: 29px;
+        text-align: center;
+        color: white;
+        border: 1px solid white;
+    }
+
+    input {
+        width: 100%;
+        border: none;
+        border-radius: 19px;
+    }
+</style>
+<div class="container">
+    <br>
+    <br>
+    <div class="row">
+        {% for courses in professional_courses %}
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <form action="{% url 'course_details' %}" method="GET">
+                {% csrf_token %}
+            <div class="department">
+                <h5><b>{{ courses.course_name }}</b></h5>
+                <hr>
+                <b>{{ courses.short_description }}
+                </b>
+                <hr>
+                <input name="course_name" type="hidden" value="{{ courses.course_name }}">
+                <input type="submit" value="GO">
+            </div>
+        </form>
+        </div>
+        {% endfor %}
+    </div>
+    <br>
+    <br>
+</div>
+{% endblock content %}

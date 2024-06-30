@@ -1,0 +1,243 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<style>
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .history {
+        padding: 19px;
+    }
+
+
+    .profile {
+        width: 93%;
+        box-sizing: border-box;
+        height: auto;
+        top: 143px;
+        background: #142023;
+        border-radius: 19px;
+        margin: auto;
+        color: white;
+    }
+
+    .profile_bio {
+        width: 93%;
+        box-sizing: border-box;
+        left: 80px;
+        top: 143px;
+        background: #142023;
+        border-radius: 19px;
+        margin: auto;
+        color: white;
+        border: 1px solid white;
+    }
+
+    .profile_pic {
+        width: 129px;
+        height: 129px;
+        border-radius: 50%;
+        margin: auto;
+        margin-top: 29px;
+    }
+
+    .left {
+        text-align: left;
+    }
+
+    .right {
+        text-align: right;
+    }
+
+    .info {
+        padding: 29px;
+    }
+
+    .profile_name {
+        text-align: center;
+        margin-top: 29px;
+    }
+
+    .button {
+        width: 130px;
+        height: 32px;
+        border: 1px solid black;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 22px;
+        background: #FFFBDA;
+        border: 1px solid #000000;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+    }
+
+    .status {
+        height: 100vh;
+        overflow: scroll;
+        margin-top: 29px;
+    }
+
+    .status_details {
+        box-sizing: border-box;
+        width: 93%;
+        height: 226px;
+        background: #142023;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+        border-radius: 19px;
+        margin: auto;
+        color: white;
+    }
+
+    .order {
+        background: #142023;
+        border: 2px solid #B5B5B5;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+        border-radius: 19px;
+        padding: 19px;
+        font-size: 15px;
+        color: white;
+        border: 1px solid white;
+    }
+
+    @media screen and (max-width: 479px) {
+        .profile {
+            width: 100%;
+            height: auto;
+        }
+
+        .profile_bio {
+            width: 100%;
+        }
+
+        .status_details {
+            width: 100%;
+        }
+
+        .left {
+            text-align: left;
+            width: 50%;
+        }
+
+        .right {
+            text-align: right;
+            width: 50%;
+        }
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-12 col-sm-12">
+            <div class="profile">
+                <div class="profile_pic">
+                    <img class="profile_pic" src="{% static 'img/profile.png' %}" alt="">
+                </div>
+                <div>
+                    <div class="profile_name">
+                        <br>
+                        <p>@{{ user.username }}</p>
+                        <h5><b>{{ user.get_full_name }}</b></h5>
+                    </div>
+                    <div class="row info">
+                        <div class="col-lg-6 col-md-6 col-sm-6 left">
+                            <p>Total Order :</p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 right">
+                            <p>99</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr style="width: 93%; margin: auto;">
+            <br>
+            <div class="profile_bio">
+                <div class="row info">
+                    <p>Email: {{ user.email }}</p>
+                    <!-- <p>Phone: +8801885706992</p> -->
+                    <p>Shop Name: Beutiful Shop</p>
+                    <p><button class="button">Edit Profile</button></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-12 col-sm-12 status">
+            <p style="color: #00d0ff;"><b>Order List | <a style="text-decoration: none;" href=""><span
+                            style="color: hsl(55, 96%, 41%); cursor: pointer;">Refresh</span></a></b></p>
+            {% for orderlist in order reversed %}
+            {% if orderlist.payment_status %}
+            <p class="order">
+                <span>Order ID: {{ orderlist.pk }}</span>
+                <br>
+                {{ orderlist.sendername }} sent a file | File Name : {{ orderlist.file }}
+                <br>
+                <br>
+                <a style="text-decoration: none;" href="{{ orderlist.file.url }}"><b style="color: #00d0ff;">Print</b>
+                    <svg style="color: #00d0ff;" xmlns="http://www.w3.org/2000/svg" width="19" height="19"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="feather feather-printer">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2">
+                        </path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                </a>
+                <span style="float: right; font-size: 15px;">{{ orderlist.time|naturaltime }}</span>
+                {% if not orderlist.status %}
+                <a href="#" class="complete-button" data-order-id="{{ orderlist.pk }}"
+                    data-url="{% url 'complete_order' orderlist.pk %}">
+                    | <svg style="color: white;" xmlns="http://www.w3.org/2000/svg" width="19" height="19"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="feather feather-check-circle" style="margin-left: 10px;">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="16 12 10 16 8 14"></polyline>
+                    </svg>
+                </a>
+                <b><span id="order-{{ orderlist.pk }}-status" style="margin-left: 5px; color: #1BB617;"></span></b>
+                {% else %}
+                | <svg style="color: white;" xmlns="http://www.w3.org/2000/svg" width="19" height="19"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-check-circle" style="margin-left: 10px;">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="16 12 10 16 8 14"></polyline>
+                </svg>
+                <span style="margin-left: 5px; color: #1BB617;"><b>Completed</b></span>
+                {% endif %}
+            </p>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var button = $('.complete-button');
+        button.on('click', function (e) {
+            e.preventDefault();
+            var orderId = $(this).data('order-id');
+            var url = $(this).data('url');
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    'order_id': orderId,
+                },
+                success: function (data) {
+                    $('#order-' + orderId + '-status').html('Completed');
+                },
+                error: function () {
+                    alert('An error occurred.');
+                }
+            });
+        });
+    });
+</script>
+</div>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,81 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+
+<style>
+  textarea {
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .design {
+    background-color: #142023;
+    padding: 19px;
+    border-radius: 19px;
+  }
+
+  .check_grammer_btn {
+    border: none;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 25px;
+    background-color: transparent;
+    transition: 0.4s ease;
+    margin-bottom: 10px;
+  }
+
+  .check_grammer_btn:hover {
+    background-color: blue;
+    border: 1px solid blue;
+  }
+</style>
+<div class="page-container">
+  <br />
+  <br />
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12"></div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col design" style="color: #ccc">
+          <h5 style="color: white"><b>Write The Text</b></h5>
+          <hr />
+          <form action="{% url 'grammar_check_view' %}" method="post">
+            {% csrf_token %}
+            <textarea name="text" rows="4" cols="50"></textarea>
+            <br />
+            <br />
+            <input
+              type="submit"
+              value="Check Grammar"
+              class="check_grammer_btn"
+            />
+          </form>
+          {% if message %}
+          <h2>{{ message }}</h2>
+          {% endif %} {% if corrections %}
+          <h2>Grammar Corrections:</h2>
+          <ul>
+            {% for correction in corrections %}
+            <li>
+              Incorrect: <span class="">{{ correction.incorrect }}</span>.
+              Correct: <span class="correct">{{ correction.correct }}</span>.
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          <br />
+          {% if corrected_passage %}
+          <h2>Corrected Passage:</h2>
+          <p>{{ corrected_passage }}</p>
+          {% endif %}
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

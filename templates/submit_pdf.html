@@ -1,0 +1,190 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .row {
+        background: #142023;
+        text-align: justify;
+        padding: 29px;
+        border: 1px solid rgb(197, 197, 197);
+        color: white;
+        border-top-right-radius: 19px;
+        border-top-left-radius: 19px;
+
+    }
+
+    .new_row {
+        background: none;
+        background-color: white;
+        border-bottom: 2px solid rgb(197, 197, 197);
+        border-bottom-left-radius: 19px;
+        border-bottom-right-radius: 19px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
+
+    .button {
+        border: none;
+        background: #142023;
+        color: white;
+        padding: 5px;
+        width: 100%;
+        font-weight: bolder;
+        height: 39px;
+        border-radius: 19px;
+    }
+
+
+    .offer {
+        border: none;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        width: 99px;
+        height: 99px;
+        font-size: 15px;
+    }
+
+
+    .file {
+        display: none;
+    }
+
+    .custom-file-upload {
+        width: 100%;
+        background-color: #acacac;
+        height: 129px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 19px;
+    }
+
+    .form {
+        padding: 0;
+    }
+
+
+    svg {
+        color: rgb(97, 97, 97);
+    }
+
+    .offer {
+        background-color: orangered;
+        color: white;
+        width: 99px;
+        height: 99px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .custom_row {
+        background: none;
+        background-color: none;
+        background-color: transparent;
+        border: none;
+    }
+
+    .shop-details {
+        color: black;
+    }
+
+    @media screen and (max-width: 479px) {
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+    }
+</style>
+<div class="container">
+    <br>
+    <a href="{% url 'print_shop' %}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-corner-down-left">
+            <polyline points="9 10 4 15 9 20"></polyline>
+            <path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
+        </svg>
+    </a>
+    <span style="text-align: left; font-size: 23px; color: white;"><b> {{ shoplist.shopname }}</b></span>
+    <hr>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 form">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa illum natus nobis quam alias perspiciatis eum
+            nam non, assumenda, optio, ipsum sint neque saepe! Suscipit consectetur maxime laboriosam maiores obcaecati
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam placeat quaerat nulla ipsam facilis minima
+            dolor error laborum odit illo esse reprehenderit, quo voluptatum iure accusantium modi dolores, assumenda
+            similique!
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa illum natus nobis quam alias perspiciatis eum
+            nam non, assumenda, optio, ipsum sint neque saepe! Suscipit consectetur maxime laboriosam maiores obcaecati
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam placeat quaerat nulla ipsam facilis minima
+            dolor error laborum odit illo esse reprehenderit, quo voluptatum iure accusantium modi dolores, assumenda
+            similique!
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 form">
+            <img src="{% static 'img/p.png' %}" alt="">
+        </div>
+    </div>
+    <div class="row new_row">
+        <div class="col-lg-6 col-md-6 col-sm-12 form">
+            <!-- <p class="offer"><b>10% OFF</b></p> -->
+            <p class="shop-details"><b>Shop :</b> {{ shoplist.shopname }}</p>
+            <p class="shop-details"><b>Location :</b> {{ shoplist.shoplocation }}</p>
+            <p class="shop-details"><b>Per Page :</b> 5 BDT - 10% = 4 BDT</p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 form">
+            <form action="{% url 'PDFDatabase_form' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input name="username" type="hidden" value="{{ user.username }}">
+                <input name="name" type="hidden" value="{{ user.get_full_name }}">
+                <input name="email" type="hidden" value="{{ user.email }}">
+                <input name="selectshopname" type="hidden" value="{{ shoplist.shopname }}">
+                <input name="selectedshopusername" type="hidden" value="{{ shoplist.username }}">
+                <input name="phone" type="hidden" value="{{ user.email }}">
+                <label for="file-upload" class="custom-file-upload">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="73" height="73" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-download">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span id="selected-file-name" style="color: white"><b>Choose a file </b><span
+                            style="color: rgb(229, 229, 229)">PDF Only</span></span>
+                </label>
+                <input class="file" name="file" id="file-upload" type="file" required>
+                <br>
+                {% if user.is_authenticated %}
+                <input class="button" type="submit" value="Submit">
+                {% else %}
+                <p class="mb-0">
+                    <a rel="nofollow" href="{% url 'signup' %}">create a free
+                        account</a> for enjoying this.
+                </p>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    const fileUpload = document.getElementById('file-upload');
+    const selectedFileName = document.getElementById('selected-file-name');
+
+    fileUpload.addEventListener('change', function () {
+        if (fileUpload.files.length > 0) {
+            selectedFileName.textContent = fileUpload.files[0].name;
+        } else {
+            selectedFileName.textContent = '';
+        }
+    });
+
+</script>
+
+
+{% endblock content %}
