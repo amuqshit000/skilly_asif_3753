@@ -121,12 +121,12 @@ MESSAGE_TAGS = {
 
 # Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.catchycampus.com'
+EMAIL_HOST = 'mail.skilly.com'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
-EMAIL_HOST_USER = 'catchycampus@catchycampus.com'
-EMAIL_HOST_PASSWORD = '01986292330@sK'
+EMAIL_HOST_USER = 'skilly@skily.com'
+EMAIL_HOST_PASSWORD = '3753@asif'
 
 
 
